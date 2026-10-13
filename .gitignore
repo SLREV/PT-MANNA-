@@ -1,0 +1,6 @@
+# Data lokal PC (database, config, akun, backup) — jangan di-commit
+data/
+node_modules/
+*.log
+.DS_Store
+Thumbs.db

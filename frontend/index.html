@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>PT. MANNA — Sistem Data &amp; Dashboard</title>
+<meta name="description" content="Aplikasi PT. MANNA: Data PO, Surat Jalan, Invois, Penawaran & Laporan Keuangan">
+<meta name="theme-color" content="#0f172a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PT MANNA">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ IKON (SVG sprite) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h14V10" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M9 13h6M9 17h6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 4h14v12H1zM15 9h4l3 3v4h-7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18.5" r="2"/><circle cx="18" cy="18.5" r="2"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M9 7h6M9 11h6M9 15h4M6 3h12a1 1 0 0 1 1 1v17l-2.5-1.5L14 21l-2.5-1.5L9 21l-2.5-1.5L4 21V4a1 1 0 0 1 1-1z" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-money" viewBox="0 0 24 24"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 13l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 21v-8H7v8M7 3v5h8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3" stroke-linecap="round"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V3m0 0 4 4m-4-4-4 4M4 21h16" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.78A6 6 0 0 0 4.5 12.5 3.5 3.5 0 0 0 6 19z" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 14h12v8H6z" stroke-linejoin="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2" stroke-linecap="round"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ LOGIN ============ -->
+<div class="login-screen" id="loginScreen" hidden>
+  <form class="login-card" id="loginForm" autocomplete="on">
+    <div class="brand" style="padding:0 0 18px">
+      <div class="logo">M</div>
+      <div><div class="name" style="color:var(--ink)" data-company="name">PT. MANNA</div><div class="sub" data-company="sub">Engineering Teknik Indonesia</div></div>
+    </div>
+    <h2>Masuk ke aplikasi</h2>
+    <p class="muted" style="margin:4px 0 18px">Gunakan akun yang dibuat oleh admin.</p>
+    <div class="field"><label>Username</label><input id="login_user" name="username" autocomplete="username" required autocapitalize="none"></div>
+    <div class="field" style="margin-top:12px"><label>Password</label><input id="login_pass" name="password" type="password" autocomplete="current-password" required></div>
+    <div class="login-err" id="loginErr"></div>
+    <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;margin-top:16px">Masuk</button>
+    <p class="muted" style="font-size:12px;margin-top:14px;text-align:center" id="loginServer"></p>
+  </form>
+</div>
+
+<div class="app" id="app" hidden>
+  <div class="scrim" id="scrim"></div>
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="logo">M</div>
+      <div>
+        <div class="name" data-company="name">PT. MANNA</div>
+        <div class="sub" data-company="sub">Engineering Teknik Indonesia</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <div class="nav-label">Menu Utama</div>
+      <button class="nav-item active" data-page="dashboard"><svg fill="none" stroke="currentColor"><use href="#i-home"/></svg>Dashboard</button>
+      <button class="nav-item" data-page="po"><svg fill="none" stroke="currentColor"><use href="#i-doc"/></svg>Input Data (PO)</button>
+      <button class="nav-item" data-page="suratjalan"><svg fill="none" stroke="currentColor"><use href="#i-truck"/></svg>Surat Jalan</button>
+      <button class="nav-item" data-page="invois"><svg fill="none" stroke="currentColor"><use href="#i-receipt"/></svg>Invois</button>
+      <button class="nav-item" data-page="penawaran"><svg fill="none" stroke="currentColor"><use href="#i-money"/></svg>Penawaran</button>
+      <button class="nav-item" data-page="keuangan"><svg fill="none" stroke="currentColor"><use href="#i-chart"/></svg>Laporan Keuangan</button>
+      <div class="nav-label">Lainnya</div>
+      <button class="nav-item" data-page="pengaturan"><svg fill="none" stroke="currentColor"><use href="#i-gear"/></svg>Pengaturan</button>
+      <button class="nav-item" id="installBtn" hidden><svg fill="none" stroke="currentColor"><use href="#i-phone"/></svg>Install Aplikasi</button>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="who">
+        <div class="avatar" id="userAvatar">A</div>
+        <div style="min-width:0;flex:1">
+          <div style="color:#fff;font-weight:700;font-size:13px" id="userName">Admin</div>
+          <div class="role" id="userRole">admin</div>
+        </div>
+        <button class="btn-icon dark" title="Keluar" onclick="logout()"><svg fill="none" stroke="currentColor"><use href="#i-logout"/></svg></button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <div class="topbar">
+      <button class="btn-icon menu-btn" id="menuBtn" title="Menu"><svg fill="none" stroke="currentColor"><use href="#i-menu"/></svg></button>
+      <div style="min-width:0">
+        <div class="title" id="pageTitle">Dashboard</div>
+        <div class="crumb" id="pageCrumb">Ringkasan seluruh aktivitas</div>
+      </div>
+      <div class="right">
+        <button class="pill-status" id="connStatus" title="Status koneksi" onclick="manualRefresh()"><span class="dot"></span><span class="txt">Menghubungkan...</span></button>
+        <span class="pill-status cloud" id="cloudStatus" title="Status cloud" hidden><svg fill="none" stroke="currentColor" width="14" height="14" stroke-width="2"><use href="#i-cloud"/></svg><span class="txt"></span></span>
+      </div>
+    </div>
+
+    <div class="banner warn" id="pwBanner" hidden>
+      <svg fill="none" stroke="currentColor"><use href="#i-alert"/></svg>
+      <span>Anda masih memakai password bawaan. Segera ganti di <a href="#" data-go="pengaturan"><b>Pengaturan</b></a>.</span>
+    </div>
+
+    <div class="content">
+      <!-- ===== DASHBOARD ===== -->
+      <section class="page active" id="page-dashboard">
+        <div class="hero">
+          <h2>Selamat Datang di <span data-company="name">PT. MANNA</span> 👋</h2>
+          <p>Sistem pencatatan data terintegrasi — dari Input Data PO, Surat Jalan, Invois, Penawaran, hingga Laporan Keuangan. Tersimpan di PC kantor &amp; tersinkron ke cloud.</p>
+          <div class="cta">
+            <button class="btn btn-white" data-go="po"><svg fill="none" stroke="currentColor"><use href="#i-plus"/></svg>Input Data PO</button>
+            <button class="btn btn-ghost" style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.3)" data-go="penawaran">Buat Penawaran</button>
+          </div>
+        </div>
+
+        <div class="row" id="kpiRow"></div>
+
+        <div class="row">
+          <div class="col-8">
+            <div class="card">
+              <div class="head">
+                <div><h3>Arus Kas 6 Bulan Terakhir</h3><div class="sub">Uang masuk vs uang keluar</div></div>
+                <div class="legend-inline"><span><i style="background:#6366f1"></i>Masuk</span><span><i style="background:#06b6d4"></i>Keluar</span></div>
+              </div>
+              <div class="chart-flex" id="cashChart"></div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card">
+              <div class="head"><div><h3>Komposisi Dokumen</h3><div class="sub">Total per kategori</div></div></div>
+              <div class="donut-wrap" id="donutChart"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-8">
+            <div class="card">
+              <div class="head">
+                <div><h3>Aktivitas Terbaru</h3><div class="sub">Data terakhir yang diinput</div></div>
+                <button class="btn btn-soft btn-sm" data-go="keuangan">Lihat keuangan</button>
+              </div>
+              <div class="tbl-wrap"><table id="recentTable" class="compact"></table></div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card">
+              <div class="head"><div><h3>Status Invois</h3><div class="sub">Ringkasan pembayaran</div></div></div>
+              <div class="donut-wrap" id="invStatus"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== INPUT DATA PO ===== -->
+      <section class="page" id="page-po">
+        <div class="steps">
+          <div class="step act"><b>1</b> Input Data PO</div><span class="arrow">→</span>
+          <div class="step"><b>2</b> Surat Jalan</div><span class="arrow">→</span>
+          <div class="step"><b>3</b> Invois</div>
+        </div>
+        <div class="card">
+          <div class="head">
+            <div><h3 id="poFormTitle">Form Input Data PO</h3><div class="sub">Masukkan data Purchase Order</div></div>
+          </div>
+          <div class="form-grid">
+            <div class="field"><label>Nomor PO <span class="req">*</span></label><input id="po_no" placeholder="cth: PO-2026-001"></div>
+            <div class="field"><label>Tanggal PO <span class="req">*</span></label><input id="po_tgl" type="date"></div>
+            <div class="field"><label>Nama Customer <span class="req">*</span></label><input id="po_cust" placeholder="Nama perusahaan / instansi" list="custList"></div>
+            <div class="field"><label>No. Telepon</label><input id="po_telp" type="tel" placeholder="cth: 0812-3456-7890"></div>
+            <div class="field full"><label>Alamat</label><input id="po_alamat" placeholder="Alamat lengkap customer"></div>
+            <div class="field full">
+              <label>Rincian Barang / Jasa <span class="req">*</span></label>
+              <div class="items-head"><span>Nama Barang / Jasa</span><span>Qty</span><span>Satuan</span><span>Harga Satuan (Rp)</span><span></span></div>
+              <div id="po_items"></div>
+              <button class="btn btn-soft btn-sm" type="button" onclick="addItemRow('po_items')"><svg fill="none" stroke="currentColor"><use href="#i-plus"/></svg>Tambah Baris</button>
+            </div>
+            <div class="field"><label>Catatan</label><input id="po_catatan" placeholder="Opsional"></div>
+            <div class="field total-box-wrap"><div class="total-box"><div class="lbl">TOTAL PO</div><div id="po_total" class="amt rupiah">Rp 0</div></div></div>
+            <div class="field full form-actions">
+              <button class="btn btn-ghost" onclick="resetForm('po')">Reset</button>
+              <button class="btn btn-primary" onclick="savePO()"><svg fill="none" stroke="currentColor"><use href="#i-save"/></svg>Simpan Data PO</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="head">
+            <div><h3>Daftar Data PO</h3><div class="sub" id="poCount"></div></div>
+            <div class="toolbar">
+              <div class="search"><svg fill="none" stroke="currentColor"><use href="#i-search"/></svg><input id="poSearch" placeholder="Cari PO / customer..." oninput="renderTable('po')"></div>
+              <button class="btn-icon" title="Export CSV" onclick="exportCSV('po')"><svg fill="none" stroke="currentColor"><use href="#i-download"/></svg></button>
+            </div>
+          </div>
+          <div class="tbl-wrap"><table id="poTable"></table></div>
+        </div>
+      </section>
+
+      <!-- ===== SURAT JALAN ===== -->
+      <section class="page" id="page-suratjalan">
+        <div class="steps">
+          <div class="step"><b>1</b> Input Data PO</div><span class="arrow">→</span>
+          <div class="step act"><b>2</b> Surat Jalan</div><span class="arrow">→</span>
+          <div class="step"><b>3</b> Invois</div>
+        </div>
+        <div class="card">
+          <div class="head">
+            <div><h3>Buat Surat Jalan</h3><div class="sub">Data barang otomatis diambil dari Data PO yang dipilih</div></div>
+          </div>
+          <div class="form-grid">
+            <div class="field"><label>Pilih Data PO <span class="req">*</span></label><select id="sj_po" onchange="fillSJ()"><option value="">— Pilih PO —</option></select></div>
+            <div class="field"><label>Nomor Surat Jalan <span class="req">*</span></label><input id="sj_no" placeholder="cth: SJ-2026-001"></div>
+            <div class="field"><label>Tanggal Kirim <span class="req">*</span></label><input id="sj_tgl" type="date"></div>
+            <div class="field"><label>Ekspedisi / Transport</label><input id="sj_ekspedisi" placeholder="cth: Truk / Kurir"></div>
+            <div class="field"><label>Penerima</label><input id="sj_penerima" placeholder="Nama penerima"></div>
+            <div class="field"><label>No. Kendaraan</label><input id="sj_kendaraan" placeholder="Opsional"></div>
+            <div class="field full">
+              <label>Rincian Barang (dari PO — bisa disesuaikan)</label>
+              <div class="items-head"><span>Nama Barang / Jasa</span><span>Qty</span><span>Satuan</span><span>Harga Satuan (Rp)</span><span></span></div>
+              <div id="sj_items"></div>
+              <button class="btn btn-soft btn-sm" type="button" onclick="addItemRow('sj_items')"><svg fill="none" stroke="currentColor"><use href="#i-plus"/></svg>Tambah Baris</button>
+            </div>
+            <div class="field"><label>Catatan</label><input id="sj_catatan" placeholder="Opsional"></div>
+            <div class="field total-box-wrap"><div class="total-box"><div class="lbl">TOTAL</div><div id="sj_total" class="amt rupiah">Rp 0</div></div></div>
+            <div class="field full form-actions">
+              <button class="btn btn-ghost" onclick="resetForm('sj')">Reset</button>
+              <button class="btn btn-primary" onclick="saveSJ()"><svg fill="none" stroke="currentColor"><use href="#i-save"/></svg>Simpan Surat Jalan</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="head">
+            <div><h3>Daftar Surat Jalan</h3><div class="sub" id="sjCount"></div></div>
+            <div class="toolbar">
+              <div class="search"><svg fill="none" stroke="currentColor"><use href="#i-search"/></svg><input id="sjSearch" placeholder="Cari..." oninput="renderTable('sj')"></div>
+              <button class="btn-icon" title="Export CSV" onclick="exportCSV('sj')"><svg fill="none" stroke="currentColor"><use href="#i-download"/></svg></button>
+            </div>
+          </div>
+          <div class="tbl-wrap"><table id="sjTable"></table></div>
+        </div>
+      </section>
+
+      <!-- ===== INVOIS ===== -->
+      <section class="page" id="page-invois">
+        <div class="steps">
+          <div class="step"><b>1</b> Input Data PO</div><span class="arrow">→</span>
+          <div class="step"><b>2</b> Surat Jalan</div><span class="arrow">→</span>
+          <div class="step act"><b>3</b> Invois</div>
+        </div>
+        <div class="card">
+          <div class="head">
+            <div><h3>Buat Invois</h3><div class="sub">Data otomatis diambil dari Surat Jalan yang dipilih</div></div>
+          </div>
+          <div class="form-grid">
+            <div class="field"><label>Pilih Surat Jalan <span class="req">*</span></label><select id="inv_sj" onchange="fillInv()"><option value="">— Pilih Surat Jalan —</option></select></div>
+            <div class="field"><label>Nomor Invois <span class="req">*</span></label><input id="inv_no" placeholder="cth: INV-2026-001"></div>
+            <div class="field"><label>Tanggal Invois <span class="req">*</span></label><input id="inv_tgl" type="date"></div>
+            <div class="field"><label>Jatuh Tempo</label><input id="inv_tempo" type="date"></div>
+            <div class="field"><label>PPN (%)</label><input id="inv_ppn" type="number" value="11" min="0" step="0.01" oninput="calcInv()"></div>
+            <div class="field"><label>Status Pembayaran</label>
+              <select id="inv_status"><option value="Belum Bayar">Belum Bayar</option><option value="Dibayar">Dibayar</option><option value="Sebagian">Sebagian</option></select>
+            </div>
+            <div class="field full">
+              <label>Rincian Barang (dari Surat Jalan)</label>
+              <div class="items-head"><span>Nama Barang / Jasa</span><span>Qty</span><span>Satuan</span><span>Harga Satuan (Rp)</span><span></span></div>
+              <div id="inv_items"></div>
+              <button class="btn btn-soft btn-sm" type="button" onclick="addItemRow('inv_items')"><svg fill="none" stroke="currentColor"><use href="#i-plus"/></svg>Tambah Baris</button>
+            </div>
+            <div class="field"><label>Catatan</label><input id="inv_catatan" placeholder="Opsional"></div>
+            <div class="field total-box-wrap"><div class="total-box">
+              <div class="lbl">SUBTOTAL <span id="inv_subtotal" class="rupiah" style="float:right">Rp 0</span></div>
+              <div class="lbl">PPN <span id="inv_ppn_amt" class="rupiah" style="float:right">Rp 0</span></div>
+              <div class="lbl" style="margin-top:4px">TOTAL TAGIHAN</div>
+              <div id="inv_total" class="amt rupiah">Rp 0</div>
+            </div></div>
+            <div class="field full form-actions">
+              <button class="btn btn-ghost" onclick="resetForm('inv')">Reset</button>
+              <button class="btn btn-primary" onclick="saveInv()"><svg fill="none" stroke="currentColor"><use href="#i-save"/></svg>Simpan Invois</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="head">
+            <div><h3>Daftar Invois</h3><div class="sub" id="invCount"></div></div>
+            <div class="toolbar">
+              <div class="search"><svg fill="none" stroke="currentColor"><use href="#i-search"/></svg><input id="invSearch" placeholder="Cari..." oninput="renderTable('inv')"></div>
+              <button class="btn-icon" title="Export CSV" onclick="exportCSV('inv')"><svg fill="none" stroke="currentColor"><use href="#i-download"/></svg></button>
+            </div>
+          </div>
+          <div class="tbl-wrap"><table id="invTable"></table></div>
+        </div>
+      </section>
+
+      <!-- ===== PENAWARAN ===== -->
+      <section class="page" id="page-penawaran">
+        <div class="card">
+          <div class="head">
+            <div><h3>Buat Penawaran Baru</h3><div class="sub">Buat penawaran sesuai keinginan user — tidak terikat data lain</div></div>
+          </div>
+          <div class="form-grid">
+            <div class="field"><label>Nomor Penawaran <span class="req">*</span></label><input id="pen_no" placeholder="cth: PEN-2026-001"></div>
+            <div class="field"><label>Tanggal <span class="req">*</span></label><input id="pen_tgl" type="date"></div>
+            <div class="field"><label>Nama Customer <span class="req">*</span></label><input id="pen_cust" placeholder="Nama perusahaan / instansi" list="custList"></div>
+            <div class="field"><label>Status</label>
+              <select id="pen_status"><option value="Draft">Draft</option><option value="Terkirim">Terkirim</option><option value="Disetujui">Disetujui</option><option value="Ditolak">Ditolak</option></select>
+            </div>
+            <div class="field full">
+              <label>Rincian Barang / Jasa <span class="req">*</span></label>
+              <div class="items-head"><span>Nama Barang / Jasa</span><span>Qty</span><span>Satuan</span><span>Harga Satuan (Rp)</span><span></span></div>
+              <div id="pen_items"></div>
+              <button class="btn btn-soft btn-sm" type="button" onclick="addItemRow('pen_items')"><svg fill="none" stroke="currentColor"><use href="#i-plus"/></svg>Tambah Baris</button>
+            </div>
+            <div class="field"><label>Catatan</label><input id="pen_catatan" placeholder="Opsional"></div>
+            <div class="field total-box-wrap"><div class="total-box"><div class="lbl">TOTAL PENAWARAN</div><div id="pen_total" class="amt rupiah">Rp 0</div></div></div>
+            <div class="field full form-actions">
+              <button class="btn btn-ghost" onclick="resetForm('pen')">Reset</button>
+              <button class="btn btn-primary" onclick="savePen()"><svg fill="none" stroke="currentColor"><use href="#i-save"/></svg>Simpan Penawaran</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="head">
+            <div><h3>Daftar Penawaran</h3><div class="sub" id="penCount"></div></div>
+            <div class="toolbar">
+              <div class="search"><svg fill="none" stroke="currentColor"><use href="#i-search"/></svg><input id="penSearch" placeholder="Cari..." oninput="renderTable('pen')"></div>
+              <button class="btn-icon" title="Export CSV" onclick="exportCSV('pen')"><svg fill="none" stroke="currentColor"><use href="#i-download"/></svg></button>
+            </div>
+          </div>
+          <div class="tbl-wrap"><table id="penTable"></table></div>
+        </div>
+      </section>
+
+      <!-- ===== KEUANGAN ===== -->
+      <section class="page" id="page-keuangan">
+        <div class="row" id="finKpiRow"></div>
+        <div class="row">
+          <div class="col-6">
+            <div class="card">
+              <div class="head">
+                <div><h3>Input Transaksi</h3><div class="sub">Catat uang masuk &amp; uang keluar</div></div>
+              </div>
+              <div class="form-grid">
+                <div class="field"><label>Tanggal <span class="req">*</span></label><input id="fin_tgl" type="date"></div>
+                <div class="field"><label>Jenis <span class="req">*</span></label>
+                  <select id="fin_jenis" onchange="toggleFinKategori()">
+                    <option value="masuk">Uang Masuk</option>
+                    <option value="keluar">Uang Keluar</option>
+                  </select>
+                </div>
+                <div class="field"><label>Kategori</label><select id="fin_kategori"></select></div>
+                <div class="field"><label>Jumlah (Rp) <span class="req">*</span></label><input id="fin_jumlah" type="number" min="0" inputmode="numeric" placeholder="0"></div>
+                <div class="field full"><label>Keterangan</label><input id="fin_ket" placeholder="cth: Pembayaran INV-2026-001"></div>
+                <div class="field full form-actions">
+                  <button class="btn btn-primary" onclick="saveFin()"><svg fill="none" stroke="currentColor"><use href="#i-plus"/></svg>Catat Transaksi</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card" style="height:100%">
+              <div class="head">
+                <div><h3>Arus Kas</h3><div class="sub">Ringkasan 6 bulan terakhir</div></div>
+                <div class="legend-inline"><span><i style="background:#6366f1"></i>Masuk</span><span><i style="background:#06b6d4"></i>Keluar</span></div>
+              </div>
+              <div class="chart-flex" id="finChart"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="head">
+            <div><h3>Buku Kas</h3><div class="sub" id="finCount"></div></div>
+            <div class="toolbar">
+              <div class="search"><svg fill="none" stroke="currentColor"><use href="#i-search"/></svg><input id="finSearch" placeholder="Cari keterangan / kategori..." oninput="renderTable('fin')"></div>
+              <button class="btn-icon" title="Export CSV" onclick="exportCSV('fin')"><svg fill="none" stroke="currentColor"><use href="#i-download"/></svg></button>
+            </div>
+          </div>
+          <div class="tbl-wrap"><table id="finTable"></table></div>
+        </div>
+      </section>
+
+      <!-- ===== PENGATURAN ===== -->
+      <section class="page" id="page-pengaturan">
+        <div class="row">
+          <div class="col-6">
+            <div class="card" style="height:100%">
+              <div class="head"><div><h3>Server &amp; Penyimpanan Lokal</h3><div class="sub">Data utama tersimpan di PC yang menjalankan server</div></div></div>
+              <div class="kv" id="serverInfo"><div class="muted">Memuat...</div></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card" style="height:100%">
+              <div class="head"><div><h3>Pasang di PC &amp; Android</h3><div class="sub">Jadikan aplikasi dengan ikon sendiri</div></div></div>
+              <ol class="howto">
+                <li><b>PC (Chrome/Edge):</b> buka alamat server → klik ikon <i>Install</i> di address bar, atau tombol <b>Install Aplikasi</b> di menu.</li>
+                <li><b>Android (Chrome):</b> buka alamat server dari HP → menu ⋮ → <b>Install app / Tambahkan ke layar utama</b>.</li>
+                <li><b>HP satu WiFi dengan PC:</b> pakai alamat <i>http://IP-PC:3000</i> di kiri.</li>
+                <li><b>Dari mana saja (internet):</b> jalankan <code>start-online.bat</code> untuk mendapat alamat https publik (lihat README).</li>
+              </ol>
+              <button class="btn btn-primary btn-sm" id="installBtn2" hidden><svg fill="none" stroke="currentColor"><use href="#i-download"/></svg>Install Aplikasi Sekarang</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card admin-only">
+          <div class="head">
+            <div><h3>Cloud — Google Sheets</h3><div class="sub">Semua data otomatis dicadangkan &amp; tersinkron ke Google Spreadsheet</div></div>
+            <span class="badge" id="cloudBadge">-</span>
+          </div>
+          <div class="form-grid">
+            <div class="field full">
+              <label>URL Google Apps Script (Web App)</label>
+              <input id="cfg_url" placeholder="https://script.google.com/macros/s/xxxxx/exec">
+            </div>
+            <div class="field"><label>Kunci Rahasia (SECRET_KEY di Code.gs)</label><input id="cfg_key" type="password" placeholder="kosongkan jika tidak dipakai" autocomplete="off"></div>
+            <div class="field"><label>Sinkron otomatis tiap (detik)</label><input id="cfg_interval" type="number" min="15" value="60"></div>
+            <div class="field full"><label class="check"><input type="checkbox" id="cfg_auto" checked> Sinkron otomatis (kirim perubahan &amp; ambil data terbaru dari cloud)</label></div>
+            <div class="field full muted" id="cloudInfo"></div>
+            <div class="field full" style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn btn-primary" onclick="saveCloud()"><svg fill="none" stroke="currentColor"><use href="#i-save"/></svg>Simpan &amp; Uji Koneksi</button>
+              <button class="btn btn-soft" onclick="cloudAction('sync')"><svg fill="none" stroke="currentColor"><use href="#i-refresh"/></svg>Sinkron Sekarang</button>
+              <button class="btn btn-ghost" onclick="cloudAction('pull')"><svg fill="none" stroke="currentColor"><use href="#i-download"/></svg>Ambil dari Cloud</button>
+              <button class="btn btn-ghost" onclick="cloudAction('push')"><svg fill="none" stroke="currentColor"><use href="#i-upload"/></svg>Kirim ke Cloud</button>
+            </div>
+          </div>
+          <details class="howto-box">
+            <summary>Cara setup Google Sheets (5 langkah)</summary>
+            <ol class="howto">
+              <li><b>Buat Google Spreadsheet</b> baru (misal: <i>Data PT MANNA</i>).</li>
+              <li>Menu <b>Extensions → Apps Script</b>. Hapus isi editor, lalu tempel isi file <code>cloud/Code.gs</code>. Isi <code>SECRET_KEY</code> bila ingin lebih aman. Simpan.</li>
+              <li><b>Deploy → New deployment → Web app</b>. <i>Execute as: Me</i>, <i>Who has access: Anyone</i>. Klik Deploy &amp; izinkan akses.</li>
+              <li>Salin <b>Web app URL</b> (berakhiran <code>/exec</code>) ke kolom di atas, isi kunci rahasia yang sama.</li>
+              <li>Klik <b>Simpan &amp; Uji Koneksi</b>. Selesai! 🎉 Sheet <i>Data PO, Surat Jalan, Invois, Penawaran, Keuangan</i> akan terisi otomatis.</li>
+            </ol>
+          </details>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="card" style="height:100%">
+              <div class="head"><div><h3>Ganti Password</h3><div class="sub">Akun: <b id="pwUser"></b></div></div></div>
+              <div class="form-grid" style="grid-template-columns:1fr">
+                <div class="field"><label>Password lama</label><input id="pw_old" type="password" autocomplete="current-password"></div>
+                <div class="field"><label>Password baru (min. 6 karakter)</label><input id="pw_new" type="password" autocomplete="new-password"></div>
+                <div class="field"><label>Ulangi password baru</label><input id="pw_new2" type="password" autocomplete="new-password"></div>
+                <div class="field form-actions"><button class="btn btn-primary" onclick="changePassword()">Ganti Password</button></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 admin-only">
+            <div class="card" style="height:100%">
+              <div class="head"><div><h3>Pengguna</h3><div class="sub">Akun yang bisa login (PC &amp; HP)</div></div></div>
+              <div id="userList" class="user-list"></div>
+              <div class="form-grid" style="margin-top:14px">
+                <div class="field"><label>Username</label><input id="nu_name" autocapitalize="none"></div>
+                <div class="field"><label>Password</label><input id="nu_pass" type="password" autocomplete="new-password"></div>
+                <div class="field"><label>Peran</label><select id="nu_role"><option value="staff">Staff</option><option value="admin">Admin</option></select></div>
+                <div class="field" style="display:flex;align-items:flex-end"><button class="btn btn-soft" style="width:100%;justify-content:center" onclick="addUser()"><svg fill="none" stroke="currentColor"><use href="#i-user"/></svg>Tambah Pengguna</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="head"><div><h3>Backup &amp; Export</h3><div class="sub">Backup otomatis harian tersimpan di folder <code>data/backups</code> PC server</div></div></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+            <button class="btn btn-primary" onclick="downloadBackup()"><svg fill="none" stroke="currentColor"><use href="#i-download"/></svg>Download Backup (JSON)</button>
+            <label class="btn btn-ghost admin-only" style="cursor:pointer"><svg fill="none" stroke="currentColor"><use href="#i-upload"/></svg>Restore dari Backup<input type="file" accept=".json,application/json" hidden onchange="restoreBackup(this)"></label>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-soft" onclick="exportCSV('po')">CSV Data PO</button>
+            <button class="btn btn-soft" onclick="exportCSV('sj')">CSV Surat Jalan</button>
+            <button class="btn btn-soft" onclick="exportCSV('inv')">CSV Invois</button>
+            <button class="btn btn-soft" onclick="exportCSV('pen')">CSV Penawaran</button>
+            <button class="btn btn-soft" onclick="exportCSV('fin')">CSV Keuangan</button>
+          </div>
+        </div>
+
+        <div class="card admin-only">
+          <div class="head"><div><h3>Profil Perusahaan</h3><div class="sub">Tampil di aplikasi &amp; cetakan dokumen</div></div></div>
+          <div class="form-grid">
+            <div class="field"><label>Nama Perusahaan</label><input id="co_name"></div>
+            <div class="field"><label>Sub judul / Bidang</label><input id="co_sub"></div>
+            <div class="field"><label>Kota</label><input id="co_city"></div>
+            <div class="field" style="display:flex;align-items:flex-end"><button class="btn btn-soft" onclick="saveCompany()"><svg fill="none" stroke="currentColor"><use href="#i-save"/></svg>Simpan Profil</button></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<datalist id="custList"></datalist>
+
+<div class="modal-back" id="modalBack">
+  <div class="modal">
+    <div class="modal-head"><h3 id="modalTitle">Detail</h3>
+      <div style="display:flex;gap:8px">
+        <button class="btn-icon" title="Cetak" id="modalPrint"><svg fill="none" stroke="currentColor"><use href="#i-print"/></svg></button>
+        <button class="btn-icon" title="Tutup" onclick="closeModal()"><svg fill="none" stroke="currentColor"><use href="#i-x"/></svg></button>
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toastBox"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
